@@ -150,14 +150,14 @@ SidebarProvider.displayName = "SidebarProvider";
 const Sidebar = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
-    side?: "left" | "right";
+    side?: "right" | "left";
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
   }
 >(
   (
     {
-      side = "left",
+      side = "right",
       variant = "sidebar",
       collapsible = "offcanvas",
       className,

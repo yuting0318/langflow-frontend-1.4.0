@@ -49,7 +49,7 @@ const FlowToolbar = memo(function FlowToolbar(): JSX.Element {
 
   return (
     <>
-      <Panel className="!m-2" position="top-right">
+      <Panel className="!m-3" position="bottom-center">
         <div
           className={cn(
             "hover:shadow-round-btn-shadow flex h-11 items-center justify-center gap-7 rounded-md border bg-background px-1.5 shadow transition-all",
