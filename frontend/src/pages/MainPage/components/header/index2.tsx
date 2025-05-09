@@ -92,7 +92,7 @@ const HeaderComponent2 = ({
                           className="h-4 w-4"
                       />
                       <span className="hidden whitespace-nowrap font-semibold md:inline">
-                        New Flow0123
+                        New Flow
                       </span>
                     </Button>
                   </ShadTooltip>

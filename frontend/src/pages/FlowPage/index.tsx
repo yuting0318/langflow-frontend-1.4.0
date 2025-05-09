@@ -8,7 +8,7 @@ import { SaveChangesModal } from "@/modals/saveChangesModal";
 import useAlertStore from "@/stores/alertStore";
 import { useTypesStore } from "@/stores/typesStore";
 import { customStringify } from "@/utils/reactflowUtils";
-import { useEffect, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { useBlocker, useParams } from "react-router-dom";
 import useFlowStore from "../../stores/flowStore";
 import useFlowsManagerStore from "../../stores/flowsManagerStore";
@@ -17,6 +17,9 @@ import { FlowSidebarComponent } from "./components/flowSidebarComponent";
 import HomePage2 from "@/pages/MainPage/pages/homePage/index2";
 import clsx from "clsx";
 import IconComponent from "../../components/common/genericIconComponent";
+import useAddFlow from "@/hooks/flows/use-add-flow";
+import { useReactFlow } from "react-flow-renderer";
+
 export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
   const types = useTypesStore((state) => state.types);
 
@@ -75,6 +78,64 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
       proceed = true;
     });
   };
+
+  const addFlow = useAddFlow();
+  const hasCreatedFlow = useRef(false);
+  const setTypes = useTypesStore((state) => state.setTypes);
+
+  useEffect(() => {
+    const awaitgetTypes = async () => {
+      if (flows && currentFlowId === "" && !hasCreatedFlow.current) {
+        const sortedFlows = flows.sort((a, b) => new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime());
+        const filteredFlows = sortedFlows.filter((flow) => flow.user_id !== null);
+        const isAnExistingFlow = filteredFlows.find((flow) => flow.id === id);
+        console.log("Filtered flows", filteredFlows);
+        if (id === undefined) {
+          if (filteredFlows.length === 0) {
+            hasCreatedFlow.current = true; // Mark as created
+            const newFlowId = await addFlow();
+            window.location.href = `/flow/${newFlowId}`;
+            return;
+          } else {
+            const length = filteredFlows.length;
+            const firstFlow = filteredFlows[length - 1];
+            const firstFlowId = firstFlow.id;
+            window.location.href = `/flow/${firstFlowId}`;
+          }
+        } else {
+          const isAnExistingFlow = filteredFlows.find((flow) => flow.id === id);
+          if (!isAnExistingFlow) {
+            if (filteredFlows.length === 0) {
+              hasCreatedFlow.current = true; // Mark as created
+              const newFlowId = await addFlow();
+              window.location.href = `/flow/${newFlowId}`;
+            } else {
+              const length = filteredFlows.length;
+              const lastFlow = filteredFlows[length - 1];
+              const lastFlowId = lastFlow.id;
+              window.location.href = `/flow/${lastFlowId}`;
+            }
+          }
+        }
+        console.log("Flow found", isAnExistingFlow);
+        setCurrentFlow(isAnExistingFlow);
+
+        // Focus on the flow (Fit to Zoom)
+        if (isAnExistingFlow) {
+          const reactFlowInstance = useReactFlow();
+          reactFlowInstance.fitView({ padding: 0.1 });
+        }
+      } else if (!flows) {
+        setIsLoading(true);
+        // await refreshFlows(undefined);
+        await setTypes([]);
+        setIsLoading(false);
+      }
+    };
+    console.log("Current flow", currentFlow);
+    awaitgetTypes();
+  }, [id, flows, currentFlowId, setCurrentFlow, setIsLoading, setTypes]);
+
 
   const handleExit = () => {
     if (isBuilding) {

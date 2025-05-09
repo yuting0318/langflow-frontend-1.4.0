@@ -75,14 +75,11 @@ const router = createBrowserRouter(
           >
             <Route path="" element={<AppAuthenticatedPage />}>
               <Route path="" element={<DashboardWrapperPage />}>
-                <Route path="" element={<CollectionPage />}>
+                <Route path="" element={<FlowPage />}>
                   <Route
                     index
                     element={<CustomNavigate replace to={"flows"} />}
                   />
-                  {ENABLE_FILE_MANAGEMENT && (
-                    <Route path="files" element={<FilesPage />} />
-                  )}
                   <Route
                     path="flows/"
                     element={<HomePage key="flows" type="flows" />}
@@ -93,25 +90,7 @@ const router = createBrowserRouter(
                   >
                     <Route
                       path="folder/:folderId"
-                      element={<HomePage key="components" type="components" />}
-                    />
-                  </Route>
-                  <Route
-                    path="all/"
-                    element={<HomePage key="flows" type="flows" />}
-                  >
-                    <Route
-                      path="folder/:folderId"
                       element={<HomePage key="flows" type="flows" />}
-                    />
-                  </Route>
-                  <Route
-                    path="mcp/"
-                    element={<HomePage key="mcp" type="mcp" />}
-                  >
-                    <Route
-                      path="folder/:folderId"
-                      element={<HomePage key="mcp" type="mcp" />}
                     />
                   </Route>
                 </Route>
