@@ -118,13 +118,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
           }
         }
         console.log("Flow found", isAnExistingFlow);
-        setCurrentFlow(isAnExistingFlow);
-
-        // Focus on the flow (Fit to Zoom)
-        if (isAnExistingFlow) {
-          const reactFlowInstance = useReactFlow();
-          reactFlowInstance.fitView({ padding: 0.1 });
-        }
+      
       } else if (!flows) {
         setIsLoading(true);
         // await refreshFlows(undefined);
