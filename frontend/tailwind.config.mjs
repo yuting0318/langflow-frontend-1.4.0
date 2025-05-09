@@ -108,6 +108,8 @@ const config = {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
       colors: {
+        "wooblue":"#5aafec",
+        "white1" : "#ffffff",
         "frozen-blue": "rgba(128, 190, 219, 0.86)", // Custom blue color for the frozen effect
         "frosted-glass": "rgba(255, 255, 255, 0.8)", // Custom frosted glass effect
         "component-icon": "var(--component-icon)",

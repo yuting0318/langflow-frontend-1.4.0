@@ -1,5 +1,7 @@
 import AlertDropdown from "@/alerts/alertDropDown";
+// @ts-ignore
 import DataStaxLogo from "@/assets/DataStaxLogo.svg?react";
+// @ts-ignore
 import Logo from "@/assets/Logo.svg?react";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
@@ -151,7 +153,7 @@ export default function AppHeader(): JSX.Element {
                       <IconComponent
                           name="SunIcon"
                           className="side-bar-button-size"
-                      />hidden whitespace-nowrap 2xl:inline
+                      />
                       <span className="hidden whitespace-nowrap 2xl:inline">Dark Mode</span>
                     </>
 
