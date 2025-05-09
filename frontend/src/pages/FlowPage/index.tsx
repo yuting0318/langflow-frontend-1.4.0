@@ -15,7 +15,8 @@ import useFlowsManagerStore from "../../stores/flowsManagerStore";
 import Page from "./components/PageComponent";
 import { FlowSidebarComponent } from "./components/flowSidebarComponent";
 import HomePage2 from "@/pages/MainPage/pages/homePage/index2";
-
+import clsx from "clsx";
+import IconComponent from "../../components/common/genericIconComponent";
 export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
   const types = useTypesStore((state) => state.types);
 
@@ -158,6 +159,10 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
 
   const isMobile = useIsMobile();
 
+  const [showHomePage, setShowHomePage] = useState(true); // 控制 HomePage2 是否顯示
+  const toggleHomePage = () => setShowHomePage(prev => !prev);
+
+
   return (
     <>
       <div className="flow-page-positioning">
@@ -165,9 +170,33 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
           <div className="flex h-full  overflow-hidden">
             <SidebarProvider width="17.5rem" defaultOpen={!isMobile}>
               {!view && (
-                  <div style={{ maxWidth: "279.2px", margin: "0 auto" }}>
-                    <HomePage2 type="flows" />
-                  </div>
+                  <>
+                    <div
+                        className={clsx(
+                            "transition-all duration-500 ease-in-out relative",
+                            showHomePage
+                                ? "max-w-[279.2px] opacity-100 transform scale-100"
+                                : "max-w-0 opacity-0 overflow-hidden transform scale-95"
+                        )}
+                        style={{ margin: "0 auto" }}
+                    >
+                      <button
+                          onClick={toggleHomePage}
+                          className="absolute top-3 left-3 border-1.5 border-gray-300  bg-white px-2 py-1 rounded z-999"
+                      >
+                        <IconComponent name="menu" className="m-1 w-4" />
+                      </button>
+                      <HomePage2 type="flows" />
+                    </div>
+                    {!showHomePage && (
+                          <button
+                              onClick={toggleHomePage}
+                              className="absolute top-[60px] left-3 px-2 py-1 rounded border-1.5 border-gray-300 z-50 bg-white "
+                          >
+                            <IconComponent name="menu" className="m-1 w-4" />
+                          </button>
+                    )}
+                  </>
               )}
               <main className="flex w-full overflow-hidden">
                 <div className="h-full w-full">

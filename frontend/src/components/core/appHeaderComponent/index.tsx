@@ -170,7 +170,7 @@ export default function AppHeader(): JSX.Element {
               </Button>
             </ShadTooltip>
         )}
-        {isAdmin && (
+        {isAdmin && !autoLogin && (
             <ShadTooltip content="Settings" side="bottom" styleClasses="z-999">
               <Button
                   data-testid="user-profile-settings"
@@ -190,7 +190,7 @@ export default function AppHeader(): JSX.Element {
           <Button
               data-testid="user-profile-settings"
               variant="ghost"
-              className="flex text-sm font-medium p"
+              className="flex text-sm font-medium"
               onClick={handleLogout}
           >
             <ForwardedIconComponent

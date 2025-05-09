@@ -22,6 +22,7 @@ import useDescriptionModal from "../../hooks/use-description-modal";
 import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
+import ShadTooltip from "@/components/common/shadTooltipComponent";
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -93,56 +94,56 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         } group justify-between rounded-lg border border-border p-2.5 hover:border-placeholder-foreground hover:shadow-sm`}
         data-testid="list-card"
       >
-        <div
-          className={`flex min-w-0 flex-col ${
-            isComponent ? "cursor-default" : "cursor-pointer"
-          } gap-1`}
-        >
-
-          <div className="line-clamp-1 flex min-w-0 flex-row items-center gap-3 truncate">
-            <div
+        <ShadTooltip content={flowData.name} side="top">
+          <div
+            className={`flex min-w-0 flex-col ${
+              isComponent ? "cursor-default" : "cursor-pointer"
+            } gap-1`}
+          >
+            <div className="line-clamp-1 flex min-w-0 flex-row items-center gap-3 truncate">
+              <div
                 className={cn(
-                    `flex items-center justify-center rounded-lg p-1.5`,
-                    swatchColors[swatchIndex],
+                  `flex items-center justify-center rounded-lg p-1.5`,
+                  swatchColors[swatchIndex],
                 )}
-            >
-              <ForwardedIconComponent
+              >
+                <ForwardedIconComponent
                   name={flowData?.icon || icon}
                   aria-hidden="true"
                   className="h-5 w-5"
-              />
-            </div>
-            <div className="flex flex-col w-7/12 ">
-              <div className="text-md truncate pr-2 font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-                {flowData.name}
+                />
               </div>
+              <div className="flex w-7/12 flex-col">
+                <div className="text-md overflow-hidden truncate text-ellipsis whitespace-nowrap pr-2 font-semibold">
+                  {flowData.name}
+                </div>
 
-              <div className="text-xs text-muted-foreground">
-                Edited {timeElapsed(flowData.updated_at)} ago
+                <div className="text-xs text-muted-foreground">
+                  Edited {timeElapsed(flowData.updated_at)} ago
+                </div>
               </div>
-            </div>
-            <div className=" flex items-center justify-end gap-2 ml-1">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
+              <div className="ml-1 flex items-center justify-end gap-2">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
                       variant="ghost"
                       size="iconMd"
                       data-testid="home-dropdown-menu"
                       className="group"
-                  >
-                    <ForwardedIconComponent
+                    >
+                      <ForwardedIconComponent
                         name="Ellipsis"
                         aria-hidden="true"
                         className="h-5 w-5 text-muted-foreground group-hover:text-foreground"
-                    />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
+                      />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
                     className="w-[185px]"
                     sideOffset={5}
                     side="bottom"
-                >
-                  <DropdownComponent
+                  >
+                    <DropdownComponent
                       flowData={flowData}
                       setOpenDelete={setOpenDelete}
                       handleEdit={() => {
@@ -151,19 +152,18 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                       handlePlaygroundClick={() => {
                         // handlePlaygroundClick();
                       }}
-                  />
-                </DropdownMenuContent>
-              </DropdownMenu>
+                    />
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
+            <div className="overflow-hidden text-sm text-primary">
+              <span className="block max-w-[110ch] truncate">
+                {flowData.description}
+              </span>
             </div>
           </div>
-          <div className="overflow-hidden text-sm text-primary">
-            <span className="block max-w-[110ch] truncate ">
-              {flowData.description}
-            </span>
-          </div>
-        </div>
-
-
+        </ShadTooltip>
       </Card>
 
       {openDelete && (
