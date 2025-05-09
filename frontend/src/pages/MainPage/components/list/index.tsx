@@ -88,80 +88,82 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         draggable
         onDragStart={onDragStart}
         onClick={handleClick}
-        className={`my-2 flex flex-row bg-background ${
+        className={`my-1 flex flex-row bg-background ${
           isComponent ? "cursor-default" : "cursor-pointer"
-        } group justify-between rounded-lg border border-border p-4 hover:border-placeholder-foreground hover:shadow-sm`}
+        } group justify-between rounded-lg border border-border p-2.5 hover:border-placeholder-foreground hover:shadow-sm`}
         data-testid="list-card"
       >
         <div
-          className={`flex min-w-0 ${
+          className={`flex min-w-0 flex-col ${
             isComponent ? "cursor-default" : "cursor-pointer"
-          } items-center gap-4`}
+          } gap-1`}
         >
-          <div
-            className={cn(
-              `item-center flex justify-center rounded-lg p-3`,
-              swatchColors[swatchIndex],
-            )}
-          >
-            <ForwardedIconComponent
-              name={flowData?.icon || icon}
-              aria-hidden="true"
-              className="flex h-5 w-5 items-center justify-center"
-            />
-          </div>
 
-          <div className="flex min-w-0 flex-col justify-start">
-            <div className="line-clamp-1 flex min-w-0 items-baseline truncate max-md:flex-col">
-              <div className="text-md flex truncate pr-2 font-semibold max-md:w-full">
-                <span className="truncate">{flowData.name}</span>
+          <div className="line-clamp-1 flex min-w-0 flex-row items-center gap-3 truncate">
+            <div
+                className={cn(
+                    `flex items-center justify-center rounded-lg p-1.5`,
+                    swatchColors[swatchIndex],
+                )}
+            >
+              <ForwardedIconComponent
+                  name={flowData?.icon || icon}
+                  aria-hidden="true"
+                  className="h-5 w-5"
+              />
+            </div>
+            <div className="flex flex-col w-7/12 ">
+              <div className="text-md truncate pr-2 font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+                {flowData.name}
               </div>
-              <div className="item-baseline flex text-xs text-muted-foreground">
+
+              <div className="text-xs text-muted-foreground">
                 Edited {timeElapsed(flowData.updated_at)} ago
               </div>
             </div>
-            <div className="overflow-hidden text-sm text-primary">
-              <span className="block max-w-[110ch] truncate">
-                {flowData.description}
-              </span>
+            <div className=" flex items-center justify-end gap-2 ml-1">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                      variant="ghost"
+                      size="iconMd"
+                      data-testid="home-dropdown-menu"
+                      className="group"
+                  >
+                    <ForwardedIconComponent
+                        name="Ellipsis"
+                        aria-hidden="true"
+                        className="h-5 w-5 text-muted-foreground group-hover:text-foreground"
+                    />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                    className="w-[185px]"
+                    sideOffset={5}
+                    side="bottom"
+                >
+                  <DropdownComponent
+                      flowData={flowData}
+                      setOpenDelete={setOpenDelete}
+                      handleEdit={() => {
+                        setOpenSettings(true);
+                      }}
+                      handlePlaygroundClick={() => {
+                        // handlePlaygroundClick();
+                      }}
+                  />
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
+          </div>
+          <div className="overflow-hidden text-sm text-primary">
+            <span className="block max-w-[110ch] truncate ">
+              {flowData.description}
+            </span>
           </div>
         </div>
 
-        <div className="ml-5 flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="iconMd"
-                data-testid="home-dropdown-menu"
-                className="group"
-              >
-                <ForwardedIconComponent
-                  name="Ellipsis"
-                  aria-hidden="true"
-                  className="h-5 w-5 text-muted-foreground group-hover:text-foreground"
-                />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="w-[185px]"
-              sideOffset={5}
-              side="bottom"
-            >
-              <DropdownComponent
-                flowData={flowData}
-                setOpenDelete={setOpenDelete}
-                handleEdit={() => {
-                  setOpenSettings(true);
-                }}
-                handlePlaygroundClick={() => {
-                  // handlePlaygroundClick();
-                }}
-              />
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+
       </Card>
 
       {openDelete && (

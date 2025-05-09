@@ -14,6 +14,7 @@ import useFlowStore from "../../stores/flowStore";
 import useFlowsManagerStore from "../../stores/flowsManagerStore";
 import Page from "./components/PageComponent";
 import { FlowSidebarComponent } from "./components/flowSidebarComponent";
+import HomePage2 from "@/pages/MainPage/pages/homePage/index2";
 
 export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
   const types = useTypesStore((state) => state.types);
@@ -161,8 +162,13 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
     <>
       <div className="flow-page-positioning">
         {currentFlow && (
-          <div className="flex h-full overflow-hidden">
+          <div className="flex h-full  overflow-hidden">
             <SidebarProvider width="17.5rem" defaultOpen={!isMobile}>
+              {!view && (
+                  <div style={{ maxWidth: "279.2px", margin: "0 auto" }}>
+                    <HomePage2 type="flows" />
+                  </div>
+              )}
               <main className="flex w-full overflow-hidden">
                 <div className="h-full w-full">
                   <Page setIsLoading={setIsLoading} />
