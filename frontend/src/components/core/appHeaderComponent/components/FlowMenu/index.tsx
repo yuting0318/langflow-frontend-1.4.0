@@ -296,13 +296,14 @@ export const MenuBar = memo((): JSX.Element => {
               style={{ width: Math.max(10, inputWidth) }}
             >
               <Input
-                className={cn(
-                  "text- h-6 w-full shrink-0 cursor-text font-semibold",
-                  "bg-transparent pl-1 pr-0 transition-colors duration-200",
-                  "border-0 outline-none focus:border-0 focus:outline-none focus:ring-0 focus:ring-offset-0",
-                  !editingName && "text-primary hover:opacity-80",
-                  isInvalidName && "text-status-red",
-                )}
+                  className={cn(
+                      "text- h-6 w-full shrink-0 cursor-text font-semibold",
+                      "bg-transparent pl-1 pr-0 transition-colors duration-200",
+                      "border border-transparent hover:border-primary focus:border-primary",
+                      "outline-none focus:ring-0 focus:ring-offset-0",
+                      !editingName && "text-primary hover:opacity-80",
+                      isInvalidName && "text-status-red"
+                  )}
                 onChange={handleEditName}
                 maxLength={38}
                 ref={nameInputRef}

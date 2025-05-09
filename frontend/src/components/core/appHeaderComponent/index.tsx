@@ -109,12 +109,12 @@ export default function AppHeader(): JSX.Element {
           notificationRef={notificationContentRef}
           onClose={() => setActiveState(null)}
         >
-          <ShadTooltip
-            content="Notifications and errors"
-            side="bottom"
-            styleClasses="z-10"
-          >
             <AlertDropdown onClose={() => setActiveState(null)}>
+              <ShadTooltip
+                  content="Notifications and errors"
+                  side="bottom"
+                  styleClasses="z-999"
+              >
               <Button
                 ref={notificationRef}
                 unstyled
@@ -125,33 +125,22 @@ export default function AppHeader(): JSX.Element {
                 }
                 data-testid="notification_button"
               >
-                <div className="hit-area-hover group items-center rounded-md px-2 py-1 text-muted-foreground">
+                <div className="hit-area-hover group flex items-center gap-2 rounded-md p-2.5 px-3.5">
                   <span className={getNotificationBadge()} />
                   <ForwardedIconComponent
-                    name="Bell"
-                    className={`side-bar-button-size h-4 w-4 ${
-                      activeState === "notifications"
-                        ? "text-primary"
-                        : "text-muted-foreground group-hover:text-primary"
-                    }`}
-                    strokeWidth={2}
+                      name="Bell"
+                      className="side-bar-button-size h-[18px] w-[18px]"
                   />
-                  <span className="hidden whitespace-nowrap">
-                    Notifications
-                  </span>
+                  <span className="hidden whitespace-nowrap text-[14px] 2xl:inline">Notifications</span>
                 </div>
               </Button>
+              </ShadTooltip>
             </AlertDropdown>
-          </ShadTooltip>
         </AlertDropdown>
-        <Separator
-          orientation="vertical"
-          className="my-auto ml-3 h-7 dark:border-zinc-700"
-        />
         {ENABLE_DARK_MODE && (
             <ShadTooltip content="Dark Mode" side="bottom" styleClasses="z-999">
               <Button
-                  className="extra-side-bar-save-disable  hover:bg-gray-100  rounded-lg p-2.5 px-3.5 dark:bg-background dark:hover:bg-zinc-700 text-black dark:text-white"
+                  className="extra-side-bar-save-disable  hover:bg-gray-100  rounded-lg px-2 py-1  dark:bg-background dark:hover:bg-zinc-700 text-black dark:text-white"
                   variant="ghost"
                   onClick={() => {
                     setDark(!dark);
@@ -162,7 +151,7 @@ export default function AppHeader(): JSX.Element {
                       <IconComponent
                           name="SunIcon"
                           className="side-bar-button-size"
-                      />
+                      />hidden whitespace-nowrap 2xl:inline
                       <span className="hidden whitespace-nowrap 2xl:inline">Dark Mode</span>
                     </>
 
@@ -179,11 +168,7 @@ export default function AppHeader(): JSX.Element {
               </Button>
             </ShadTooltip>
         )}
-        <Separator
-            orientation="vertical"
-            className="my-auto  h-7 dark:border-zinc-700"
-        />
-        {isAdmin && !autoLogin && (
+        {isAdmin && (
             <ShadTooltip content="Settings" side="bottom" styleClasses="z-999">
               <Button
                   data-testid="user-profile-settings"
@@ -203,7 +188,7 @@ export default function AppHeader(): JSX.Element {
           <Button
               data-testid="user-profile-settings"
               variant="ghost"
-              className="flex text-sm font-medium"
+              className="flex text-sm font-medium p"
               onClick={handleLogout}
           >
             <ForwardedIconComponent
