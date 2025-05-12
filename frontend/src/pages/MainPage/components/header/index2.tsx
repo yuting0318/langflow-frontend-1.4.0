@@ -76,7 +76,7 @@ const HeaderComponent2 = ({
           {/* Search and filters */}
           {flowType !== "mcp" && (
               <div className="sticky top-0 z-10  bg-white dark:bg-background">
-                <div className="flex justify-between pt-3 pb-1 px-2.5">
+                <div className="flex justify-between pt-2 pb-1 px-2.5">
                   <div className="flex w-full xl:w-5/12"></div>
                   <ShadTooltip content="New Flow" side="bottom">
                     <Button

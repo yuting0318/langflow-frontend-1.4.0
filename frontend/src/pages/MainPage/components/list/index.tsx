@@ -129,15 +129,15 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
           >
             <div className="line-clamp-1 flex min-w-0 flex-row items-center gap-3 truncate">
               <div
-                className={cn(
-                  `flex items-center justify-center rounded-lg p-1.5`,
-                  swatchColors[swatchIndex],
-                )}
+                  className={cn(
+                      `item-center flex justify-center rounded-lg p-2 shrink-0 bg-wooblue text-white1 dark:bg-wooblue dark:text-white1`,
+                  )}
               >
                 <ForwardedIconComponent
-                  name={flowData?.icon || icon}
+                  name={flowData?.icon || getIcon()}
                   aria-hidden="true"
-                  className="h-5 w-5"
+                  className="flex h-4 w-4 items-center justify-center"
+
                 />
               </div>
               <div className="flex w-7/12 flex-col">
@@ -149,7 +149,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                   Edited {timeElapsed(flowData.updated_at)} ago
                 </div>
               </div>
-              <div className="ml-1 flex items-center justify-end gap-2">
+              <div className="ml-1 pb-5 flex items-center justify-end gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button

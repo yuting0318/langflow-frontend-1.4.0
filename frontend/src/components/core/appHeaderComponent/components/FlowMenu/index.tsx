@@ -271,10 +271,10 @@ export const MenuBar = memo((): JSX.Element => {
       {/*>*/}
       {/*  /*/}
       {/*</div>*/}
-      <div className={cn(`flex rounded p-1`, swatchColors[swatchIndex])}>
+      <div className={cn(`flex rounded p-1 bg-wooblue`)}>
         <IconComponent
           name={currentFlowIcon ?? "Workflow"}
-          className="h-3.5 w-3.5"
+          className="h-3.5 w-3.5 text-white"
         />
       </div>
 
