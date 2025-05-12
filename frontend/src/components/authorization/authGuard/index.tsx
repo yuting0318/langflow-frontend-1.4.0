@@ -46,8 +46,7 @@ export const ProtectedRoute = ({ children }) => {
     return (
       <CustomNavigate
         to={
-          "/login" +
-          (!isHomePath && !isLoginPage ? "?redirect=" + currentPath : "")
+          "/login"
         }
         replace
       />

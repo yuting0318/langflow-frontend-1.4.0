@@ -164,7 +164,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
         const isAnExistingFlow = flows.find((flow) => flow.id === id);
 
         if (!isAnExistingFlow) {
-          navigate("/all");
+          // navigate("/all");
           return;
         }
 
