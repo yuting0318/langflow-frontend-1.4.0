@@ -75,13 +75,13 @@ const HeaderComponent2 = ({
         <>
           {/* Search and filters */}
           {flowType !== "mcp" && (
-              <div className="sticky top-0 bg-white z-10">
+              <div className="sticky top-0 z-10  bg-white dark:bg-background">
                 <div className="flex justify-between pt-3 pb-1 px-2.5">
                   <div className="flex w-full xl:w-5/12"></div>
                   <ShadTooltip content="New Flow" side="bottom">
                     <Button
                         variant="default"
-                        className="!px-3 md:!px-4 md:!pl-3.5"
+                        className="!px-3 md:!px-4 md:!pl-3.5 text-white bg-wooblue hover:bg-wooblue hover:scale-105"
                         onClick={() => setNewProjectModal(true)}
                         id="new-project-btn"
                         data-testid="new-project-btn"

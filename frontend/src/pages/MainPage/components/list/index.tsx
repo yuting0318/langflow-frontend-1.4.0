@@ -82,6 +82,14 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
     getIcon().then(setIcon);
   }, [getIcon]);
 
+
+  const selectedFlowsComponentsCards = useFlowsManagerStore(
+      (state) => state.selectedFlowsComponentsCards,
+  );
+  const isSelectedCard = selectedFlowsComponentsCards?.includes(flowData?.id) ?? false;
+  const flowIdFromUrl = location.pathname.split("/")[2];
+  const isRedBorder = flowIdFromUrl === flowData.id;
+
   return (
     <>
       <Card
@@ -89,10 +97,13 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         draggable
         onDragStart={onDragStart}
         onClick={handleClick}
-        className={`my-1 flex flex-row bg-background ${
-          isComponent ? "cursor-default" : "cursor-pointer"
-        } group justify-between rounded-lg border border-border p-2.5 hover:border-placeholder-foreground hover:shadow-sm`}
-        data-testid="list-card"
+        className={`my-1.5 flex flex-row bg-background h-24 ${
+            isComponent ? "cursor-default" : "cursor-pointer"
+        } group justify-between rounded-lg bg-clip-padding border  p-1.5  hover:shadow-sm hover:bg-blue-100/50 hover:scale-105 hover:border-blue-100/50 hover:dark:bg-wooblue/20 dark:text-white1 ${
+            isSelectedCard ? "border border-blue-100/50 ring-2 ring-blue-100/50" : ""
+        } ${
+            isRedBorder ? "border border-blue-100/50 ring-blue-100/50 bg-blue-100/50 dark:bg-wooblue/20 dark:border-wooblue/20  dark:text-white1 " : ""
+        }`}
       >
         <ShadTooltip content={flowData.name} side="top">
           <div

@@ -237,7 +237,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
                     >
                       <button
                           onClick={toggleHomePage}
-                          className="absolute top-3 left-3 border-1.5 border-gray-300  bg-white px-2 py-1 rounded z-999"
+                          className="absolute top-3 left-3 border-1.5 border-gray-300  bg-white dark:bg-background px-2 py-1 rounded z-999"
                       >
                         <IconComponent name="menu" className="m-1 w-4" />
                       </button>
@@ -246,7 +246,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
                     {!showHomePage && (
                           <button
                               onClick={toggleHomePage}
-                              className="absolute top-[60px] left-3 px-2 py-1 rounded border-1.5 border-gray-300 z-50 bg-white "
+                              className="absolute top-[60px] left-3 px-2 py-1 rounded border-1.5 border-gray-300 z-50 bg-white dark:bg-background"
                           >
                             <IconComponent name="menu" className="m-1 w-4" />
                           </button>

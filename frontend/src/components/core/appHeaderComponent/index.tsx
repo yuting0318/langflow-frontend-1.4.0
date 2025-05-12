@@ -112,11 +112,6 @@ export default function AppHeader(): JSX.Element {
           onClose={() => setActiveState(null)}
         >
             <AlertDropdown onClose={() => setActiveState(null)}>
-              <ShadTooltip
-                  content="Notifications and errors"
-                  side="bottom"
-                  styleClasses="z-999"
-              >
               <Button
                 ref={notificationRef}
                 unstyled
@@ -127,6 +122,11 @@ export default function AppHeader(): JSX.Element {
                 }
                 data-testid="notification_button"
               >
+                <ShadTooltip
+                    content="Notifications and errors"
+                    side="bottom"
+                    styleClasses=""
+                >
                 <div className="hit-area-hover group flex items-center gap-2 rounded-md p-2.5 px-3.5">
                   <span className={getNotificationBadge()} />
                   <ForwardedIconComponent
@@ -135,8 +135,8 @@ export default function AppHeader(): JSX.Element {
                   />
                   <span className="hidden whitespace-nowrap text-[14px] 2xl:inline">Notifications</span>
                 </div>
+                </ShadTooltip>
               </Button>
-              </ShadTooltip>
             </AlertDropdown>
         </AlertDropdown>
         {ENABLE_DARK_MODE && (
