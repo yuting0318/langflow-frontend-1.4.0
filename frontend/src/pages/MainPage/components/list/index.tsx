@@ -17,12 +17,15 @@ import { FlowType } from "@/types/flow";
 import { swatchColors } from "@/utils/styleUtils";
 import { cn, getNumberFromString } from "@/utils/utils";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useLocation } from "react-router-dom";
 import useDescriptionModal from "../../hooks/use-description-modal";
 import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
+import noFlowCanva from "@/pages/FlowPage/noflow";
+import {useContext} from "react";
+
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -32,6 +35,8 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const { deleteFlow } = useDeleteFlow();
   const setErrorData = useAlertStore((state) => state.setErrorData);
   const { folderId } = useParams();
+  const { noFlow, setNoFlow } = useContext(noFlowCanva);
+  const currentFlowId = useFlowsManagerStore((state) => state.currentFlowId);
   const [openSettings, setOpenSettings] = useState(false);
   const isComponent = flowData.is_component ?? false;
   const setFlowToCanvas = useFlowsManagerStore(
@@ -48,7 +53,17 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
     }
   };
 
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes(flowData.id) && noFlow) {
+      setNoFlow(false);
+    }
+  }, [location]);
+
   const handleDelete = () => {
+    if (currentFlowId === flowData.id) {
+      setNoFlow(true);
+    }
     deleteFlow({ id: [flowData.id] })
       .then(() => {
         setSuccessData({
@@ -56,6 +71,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         });
       })
       .catch(() => {
+        setNoFlow(false);
         setErrorData({
           title: "Error deleting items",
           list: ["Please try again"],
@@ -181,6 +197,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         <DeleteConfirmationModal
           open={openDelete}
           setOpen={setOpenDelete}
+          set
           onConfirm={handleDelete}
           description={descriptionModal}
           note={

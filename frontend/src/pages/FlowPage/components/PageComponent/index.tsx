@@ -14,6 +14,8 @@ import useUploadFlow from "@/hooks/flows/use-upload-flow";
 import { useAddComponent } from "@/hooks/use-add-component";
 import { nodeColorsName } from "@/utils/styleUtils";
 import { cn, isSupportedNodeTypes } from "@/utils/utils";
+import noflow from "@/pages/FlowPage/noflow";
+import noFlowCanva from "@/pages/FlowPage/noflow";
 import {
   Connection,
   Edge,
@@ -31,6 +33,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useContext,
 } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import GenericNode from "../../../../CustomNodes/GenericNode";
@@ -546,9 +549,23 @@ export default function Page({
     maxZoom: MAX_ZOOM,
   };
 
+  const {noFlow} = useContext(noFlowCanva);
+
+
   return (
     <div className="h-full w-full bg-canvas" ref={reactFlowWrapper}>
-      {showCanvas ? (
+      {noFlow ? (
+              <div className="flex h-full w-full items-center justify-center">
+                <div className="flex flex-col items-center">
+                  <div className="text-2xl font-semibold text-primary">
+                    No flow selected
+                  </div>
+                  <div className="text-lg text-primary">
+                    Please select a flow from the left panel
+                  </div>
+                </div>
+              </div>
+        ) : showCanvas ? (
         <div id="react-flow-id" className="h-full w-full bg-canvas">
           <ReactFlow<AllNodeType, EdgeType>
             nodes={nodes}

@@ -19,6 +19,7 @@ import clsx from "clsx";
 import IconComponent from "../../components/common/genericIconComponent";
 import useAddFlow from "@/hooks/flows/use-add-flow";
 import { useReactFlow } from "react-flow-renderer";
+import noFlowCanva from "@/pages/FlowPage/noflow";
 
 export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
   const types = useTypesStore((state) => state.types);
@@ -216,10 +217,11 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
 
   const [showHomePage, setShowHomePage] = useState(true); // 控制 HomePage2 是否顯示
   const toggleHomePage = () => setShowHomePage(prev => !prev);
-
+  const [noFlow, setNoFlow] = useState(false);
 
   return (
     <>
+      <noFlowCanva.Provider value={{ noFlow, setNoFlow }}>
       <div className="flow-page-positioning">
         {currentFlow && (
           <div className="flex h-full  overflow-hidden">
@@ -263,6 +265,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
           </div>
         )}
       </div>
+    </noFlowCanva.Provider>
       {blocker.state === "blocked" && (
         <>
           {!isBuilding && currentSavedFlow && (

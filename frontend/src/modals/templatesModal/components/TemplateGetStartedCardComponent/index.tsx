@@ -25,7 +25,7 @@ export default function TemplateGetStartedCardComponent({
     if (flow) {
       updateIds(flow.data!);
       addFlow({ flow }).then((id) => {
-        navigate(`/flow/${id}/folder/${folderIdUrl}`);
+        navigate(`/flow/${id}`);
       });
       track("New Flow Created", { template: `${flow.name} Template` });
     } else {

@@ -89,7 +89,6 @@ export const MenuBar = memo((): JSX.Element => {
   useGetRefreshFlowsQuery(
     {
       get_all: true,
-      header_flows: true,
     },
     { enabled: isFoldersFetched },
   );

@@ -26,10 +26,18 @@ export const usePatchUpdateFlow: useMutationFunctionType<
     id,
     ...payload
   }: IPatchUpdateFlow): Promise<any> => {
-    const response = await api.patch(`${getURL("FLOWS")}/${id}`, payload);
-
-    return response.data;
+    try {
+      const response = await api.patch(`${getURL("FLOWS")}/${id}`, {
+        ...payload,
+        folder_id: payload.folder_id || null,
+        endpoint_name: payload.endpoint_name || null,
+      });
+      return response.data;
+    } catch (error) {
+      return payload;
+    }
   };
+
 
   const mutation: UseMutationResult<IPatchUpdateFlow, any, IPatchUpdateFlow> =
     mutate(["usePatchUpdateFlow"], PatchUpdateFlowFn, {

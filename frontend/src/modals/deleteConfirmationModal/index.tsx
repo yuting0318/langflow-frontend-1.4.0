@@ -72,6 +72,7 @@ export default function DeleteConfirmationModal({
               variant="destructive"
               onClick={(e) => {
                 onConfirm(e);
+                setOpen(false);
               }}
               data-testid="btn_delete_delete_confirmation_modal"
             >
