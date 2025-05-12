@@ -1,4 +1,4 @@
-import LangflowLogo from "@/assets/LangflowLogo.svg?react";
+import LangflowLogo from "@/assets/logo.svg?react";
 import { useLoginUser } from "@/controllers/API/queries/auth";
 import { CustomLink } from "@/customization/components/custom-link";
 import * as Form from "@radix-ui/react-form";
@@ -65,13 +65,13 @@ export default function LoginPage(): JSX.Element {
       className="h-screen w-full"
     >
       <div className="flex h-full w-full flex-col items-center justify-center bg-muted">
-        <div className="flex w-72 flex-col items-center justify-center gap-2">
+        <div className="flex w-auto flex-col items-center justify-center gap-2">
           <LangflowLogo
             title="Langflow logo"
-            className="mb-4 h-10 w-10 scale-[1.5]"
+            className="mb-4 h-14 w-14 scale-[1.5]"
           />
           <span className="mb-6 text-2xl font-semibold text-primary">
-            Sign in to Langflow
+            Sign in to RAG-as-a-Service
           </span>
           <div className="mb-3 w-full">
             <Form.Field name="username">
