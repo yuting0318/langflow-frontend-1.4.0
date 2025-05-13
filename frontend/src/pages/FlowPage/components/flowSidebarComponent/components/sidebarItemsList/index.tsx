@@ -71,6 +71,7 @@ const SidebarItemsList = ({
                 itemName={SBItemName}
                 error={!!currentItem.error}
                 display_name={currentItem.display_name}
+                display_description={currentItem.description}
                 official={currentItem.official === false ? false : true}
                 beta={currentItem.beta ?? false}
                 legacy={currentItem.legacy ?? false}
@@ -124,6 +125,7 @@ const UniqueInputsDraggableComponent = ({
         itemName={SBItemName}
         error={!!currentItem.error}
         display_name={currentItem.display_name}
+        display_description={currentItem.description}
         official={currentItem.official === false ? false : true}
         beta={currentItem.beta ?? false}
         legacy={currentItem.legacy ?? false}

@@ -36,7 +36,7 @@ export function SidebarFilterComponent({
         </div>
       </div>
       <ShadTooltip
-        side="right"
+        side="top"
         styleClasses="max-w-full"
         content="Remove filter"
       >

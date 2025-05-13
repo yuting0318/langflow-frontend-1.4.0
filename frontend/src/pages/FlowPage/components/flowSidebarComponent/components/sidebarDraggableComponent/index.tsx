@@ -29,6 +29,7 @@ export const SidebarDraggableComponent = forwardRef(
     {
       sectionName,
       display_name,
+      display_description,
       icon,
       itemName,
       error,
@@ -40,11 +41,13 @@ export const SidebarDraggableComponent = forwardRef(
       legacy,
       disabled,
       disabledTooltip,
+      description,
     }: {
       sectionName: string;
       apiClass: APIClassType;
       icon: string;
       display_name: string;
+      display_description:string;
       itemName: string;
       error: boolean;
       color: string;
@@ -54,6 +57,7 @@ export const SidebarDraggableComponent = forwardRef(
       legacy: boolean;
       disabled?: boolean;
       disabledTooltip?: string;
+      description?: unknown;
     },
     ref,
   ) => {
@@ -156,11 +160,39 @@ export const SidebarDraggableComponent = forwardRef(
                 className="h-5 w-5 shrink-0"
               />
               <div className="flex flex-1 items-center overflow-hidden">
-                <ShadTooltip content={display_name} styleClasses="z-50">
-                  <span className="truncate text-sm font-normal">
-                    {display_name}
-                  </span>
+                <ShadTooltip
+                  content={
+                    <div className="max-w-xs">
+                      <div className="font-semibold">{display_name}</div>
+                      {display_description && (
+                        <div className="mt-1 text-xs text-gray-400">
+                          {display_description}
+                        </div>
+                      )}
+                    </div>
+                  }
+                  styleClasses="z-50"
+                >
+                  <div className="flex flex-col">
+                    <span className="truncate text-sm font-normal">
+                      {display_name}
+                    </span>
+                    {display_description && (
+                      <span
+                        className="line-clamp-2 break-words text-xs text-gray-500"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {display_description}
+                      </span>
+                    )}
+                  </div>
                 </ShadTooltip>
+
                 {beta && (
                   <Badge
                     variant="pinkStatic"

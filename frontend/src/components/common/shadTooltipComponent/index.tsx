@@ -48,7 +48,7 @@ const ShadTooltip = memo(
         open,
         align,
         setOpen,
-        avoidCollisions = false,
+        avoidCollisions = true,
       },
       ref,
     ) => {
