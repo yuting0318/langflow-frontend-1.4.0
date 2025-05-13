@@ -5,6 +5,9 @@ import IconComponent, {
   ForwardedIconComponent,
 } from "../../../../components/common/genericIconComponent";
 import { TemplateCardComponentProps } from "../../../../types/templates/types";
+import { useMemo } from "react";
+import { nodeIconsLucide } from "@/utils/styleUtils";
+import Layout from "@/assets/layout.png";
 
 export default function TemplateCardComponent({
   example,
@@ -33,12 +36,12 @@ export default function TemplateCardComponent({
     >
       <div
         className={cn(
-          "relative h-20 w-20 shrink-0 overflow-hidden rounded-md p-4 outline-none ring-ring",
-          swatchColors[swatchIndex],
+          "relative h-20 w-20 shrink-0 overflow-hidden rounded-md border-2 p-4 outline-none ring-ring",
         )}
       >
-        <IconComponent
-          name={example.icon || "FileText"}
+        <img
+          src={Layout}
+          alt="Layout Icon"
           className="absolute left-1/2 top-1/2 h-10 w-10 -translate-x-1/2 -translate-y-1/2 duration-300 group-hover:scale-105 group-focus-visible:scale-105"
         />
       </div>
