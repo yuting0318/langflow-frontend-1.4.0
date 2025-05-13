@@ -8,7 +8,7 @@ import { SaveChangesModal } from "@/modals/saveChangesModal";
 import useAlertStore from "@/stores/alertStore";
 import { useTypesStore } from "@/stores/typesStore";
 import { customStringify } from "@/utils/reactflowUtils";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState, createContext,} from "react";
 import { useBlocker, useParams } from "react-router-dom";
 import useFlowStore from "../../stores/flowStore";
 import useFlowsManagerStore from "../../stores/flowsManagerStore";
@@ -20,6 +20,8 @@ import IconComponent from "../../components/common/genericIconComponent";
 import useAddFlow from "@/hooks/flows/use-add-flow";
 import { useReactFlow } from "react-flow-renderer";
 import noFlowCanva from "@/pages/FlowPage/noflow";
+import {NodeDataType} from "@/types/flow";
+import {dataContext} from "./components/PageComponent/DataContext";
 
 export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
   const types = useTypesStore((state) => state.types);
@@ -219,8 +221,11 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
   const toggleHomePage = () => setShowHomePage(prev => !prev);
   const [noFlow, setNoFlow] = useState(false);
 
+  const [value, setValue] = useState<NodeDataType[]>([]);
+
   return (
     <>
+      <dataContext.Provider value={[value, setValue]}>
       <noFlowCanva.Provider value={{ noFlow, setNoFlow }}>
       <div className="flow-page-positioning">
         {currentFlow && (
@@ -257,7 +262,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
               )}
               <main className="flex w-full overflow-hidden">
                 <div className="h-full w-full">
-                  <Page setIsLoading={setIsLoading} />
+                  <Page setIsLoading={setIsLoading} data={value}/>
                 </div>
                 {!view && <FlowSidebarComponent isLoading={isLoading} />}
               </main>
@@ -290,6 +295,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
           )}
         </>
       )}
-    </>
+      </dataContext.Provider>
+      </>
   );
 }

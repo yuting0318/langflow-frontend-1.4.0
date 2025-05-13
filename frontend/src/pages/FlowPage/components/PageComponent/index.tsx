@@ -49,7 +49,7 @@ import useFlowsManagerStore from "../../../../stores/flowsManagerStore";
 import { useShortcutsStore } from "../../../../stores/shortcuts";
 import { useTypesStore } from "../../../../stores/typesStore";
 import { APIClassType } from "../../../../types/api";
-import { AllNodeType, EdgeType, NoteNodeType } from "../../../../types/flow";
+import {AllNodeType, EdgeType, NodeDataType, NoteNodeType} from "../../../../types/flow";
 import {
   generateFlow,
   generateNodeFromFlow,
@@ -82,9 +82,11 @@ const edgeTypes = {
 export default function Page({
   view,
   setIsLoading,
+    data,
 }: {
   view?: boolean;
   setIsLoading: (isLoading: boolean) => void;
+  data: NodeDataType,
 }): JSX.Element {
   const uploadFlow = useUploadFlow();
   const autoSaveFlow = useAutoSaveFlow();
@@ -614,7 +616,7 @@ export default function Page({
                   shadowBoxWidth={shadowBoxWidth}
                   shadowBoxHeight={shadowBoxHeight}
                 />
-                <FlowToolbar />
+                <FlowToolbar  data={data}/>
               </>
             )}
             <MemoizedSidebarTrigger />

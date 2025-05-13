@@ -4,7 +4,7 @@ import { usePostValidateComponentCode } from "@/controllers/API/queries/nodes/us
 import { useAlternate } from "@/shared/hooks/use-alternate";
 import { useUtilityStore } from "@/stores/utilityStore";
 import { useUpdateNodeInternals } from "@xyflow/react";
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState,useContext } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { Button } from "../../components/ui/button";
 import {
@@ -33,6 +33,8 @@ import NodeStatus from "./components/NodeStatus";
 import RenderInputParameters from "./components/RenderInputParameters";
 import { NodeIcon } from "./components/nodeIcon";
 import { useBuildStatus } from "./hooks/use-get-build-status";
+import {dataContext} from "@/pages/FlowPage/components/PageComponent/DataContext";
+import {set} from "lodash";
 
 const MemoizedOutputParameter = memo(OutputParameter);
 const MemoizedRenderInputParameters = memo(RenderInputParameters);
@@ -93,6 +95,11 @@ function GenericNode({
   const dismissAll = useUtilityStore((state) => state.dismissAll);
 
   const showNode = data.showNode ?? true;
+
+  const [value,setValue] = useContext(dataContext)!;
+  useEffect(() => {
+    setValue((value) => [...value, data]);
+  }, [ data]);
 
   const getValidationStatus = (data) => {
     setValidationStatus(data);
