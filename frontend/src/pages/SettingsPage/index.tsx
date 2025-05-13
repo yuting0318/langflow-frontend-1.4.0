@@ -26,7 +26,7 @@ export default function SettingsPage(): JSX.Element {
   if (showGeneralSettings) {
     sidebarNavItems.push({
       title: "General",
-      href: "/settings/general",
+      href: "/admin/general",
       icon: (
         <ForwardedIconComponent
           name="SlidersHorizontal"
@@ -39,7 +39,7 @@ export default function SettingsPage(): JSX.Element {
   sidebarNavItems.push(
     {
       title: "Global Variables",
-      href: "/settings/global-variables",
+      href: "/admin/global-variables",
       icon: (
         <ForwardedIconComponent
           name="Globe"
@@ -47,10 +47,19 @@ export default function SettingsPage(): JSX.Element {
         />
       ),
     },
-
+    {
+      title: "Manage Accounts",
+      href: "/admin/manage-accounts",
+      icon: (
+        <ForwardedIconComponent
+          name="UserCog2"
+          className="w-4 flex-shrink-0 justify-start stroke-[1.5]"
+        />
+      ),
+    },
     {
       title: "Shortcuts",
-      href: "/settings/shortcuts",
+      href: "/admin/shortcuts",
       icon: (
         <ForwardedIconComponent
           name="Keyboard"
@@ -60,7 +69,7 @@ export default function SettingsPage(): JSX.Element {
     },
     {
       title: "Messages",
-      href: "/settings/messages",
+      href: "/admin/messages",
       icon: (
         <ForwardedIconComponent
           name="MessagesSquare"
@@ -74,7 +83,7 @@ export default function SettingsPage(): JSX.Element {
     const langflowItems = [
       {
         title: "Langflow API Keys",
-        href: "/settings/api-keys",
+        href: "/admin/api-keys",
         icon: (
           <ForwardedIconComponent
             name="Key"
@@ -84,7 +93,7 @@ export default function SettingsPage(): JSX.Element {
       },
       {
         title: "Langflow Store",
-        href: "/settings/store",
+        href: "/admin/store",
         icon: (
           <ForwardedIconComponent
             name="Store"

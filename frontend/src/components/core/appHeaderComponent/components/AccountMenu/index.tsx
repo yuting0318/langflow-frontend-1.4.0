@@ -82,7 +82,7 @@ export const AccountMenu = () => {
             <div>
               <HeaderMenuItemButton
                 onClick={() => {
-                  navigate("/settings");
+                  navigate("/admin");
                 }}
               >
                 <span
@@ -104,7 +104,7 @@ export const AccountMenu = () => {
                       data-testid="menu_admin_page_button"
                       id="menu_admin_page_button"
                     >
-                      Admin Page
+                      Manage Accounts
                     </span>
                   </HeaderMenuItemButton>
                 </div>

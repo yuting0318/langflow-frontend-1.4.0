@@ -33,6 +33,7 @@ import GlobalVariablesPage from "./pages/SettingsPage/pages/GlobalVariablesPage"
 import MessagesPage from "./pages/SettingsPage/pages/messagesPage";
 import ShortcutsPage from "./pages/SettingsPage/pages/ShortcutsPage";
 import StoreApiKeyPage from "./pages/SettingsPage/pages/StoreApiKeyPage";
+import AdminPages from "./pages/SettingsPage/pages/adminPage";
 import StorePage from "./pages/StorePage";
 import ViewPage from "./pages/ViewPage";
 
@@ -94,10 +95,10 @@ const router = createBrowserRouter(
                     />
                   </Route>
                 </Route>
-                <Route path="settings" element={<SettingsPage />}>
+                <Route path="admin" element={<SettingsPage />}>
                   <Route
                     index
-                    element={<CustomNavigate replace to={"general"} />}
+                    element={<CustomNavigate replace to={"global-variables"} />}
                   />
                   <Route
                     path="global-variables"
@@ -115,6 +116,7 @@ const router = createBrowserRouter(
                   <Route path="shortcuts" element={<ShortcutsPage />} />
                   <Route path="messages" element={<MessagesPage />} />
                   <Route path="store" element={<StoreApiKeyPage />} />
+                  <Route path="manage-accounts" element={<AdminPages />} />
                 </Route>
                 <Route
                   path="store"

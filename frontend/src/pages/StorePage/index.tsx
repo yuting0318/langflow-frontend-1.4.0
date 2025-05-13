@@ -177,7 +177,7 @@ export default function StorePage(): JSX.Element {
           )}
           variant="primary"
           onClick={() => {
-            navigate("/settings/general/api");
+            navigate("/admin/general/api");
           }}
         >
           <IconComponent name="Key" className="mr-2 w-4" />

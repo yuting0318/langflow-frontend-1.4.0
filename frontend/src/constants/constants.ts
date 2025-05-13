@@ -559,7 +559,7 @@ export const DEFAULT_FOLDER_DEPRECATED = "My Projects";
  * @constant
  *
  */
-export const ADMIN_HEADER_TITLE = "Admin Page";
+export const ADMIN_HEADER_TITLE = "Manage Accounts";
 
 /**
  * Header description for admin page
