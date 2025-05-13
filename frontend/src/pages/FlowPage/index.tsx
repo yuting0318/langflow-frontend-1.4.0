@@ -232,7 +232,7 @@ export default function FlowPage({ view }: { view?: boolean }): JSX.Element {
                         className={clsx(
                             "transition-all duration-500 ease-in-out relative",
                             showHomePage
-                                ? "max-w-[279.2px] opacity-100 transform scale-100"
+                                ? "max-w-[279.2px] w-[60vw] opacity-100 transform scale-100"
                                 : "max-w-0 opacity-0 overflow-hidden transform scale-95"
                         )}
                         style={{ margin: "0 auto" }}

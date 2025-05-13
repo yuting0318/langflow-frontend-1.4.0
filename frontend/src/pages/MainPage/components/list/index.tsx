@@ -134,7 +134,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                   )}
               >
                 <ForwardedIconComponent
-                  name={flowData?.icon || getIcon()}
+                  name={flowData?.icon || icon}
                   aria-hidden="true"
                   className="flex h-4 w-4 items-center justify-center"
 
