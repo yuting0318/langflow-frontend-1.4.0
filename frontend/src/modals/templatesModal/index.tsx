@@ -95,7 +95,7 @@ export default function TemplatesModal({
                     }}
                     size="sm"
                     data-testid="blank-flow"
-                    className="shrink-0"
+                    className="shrink-0 bg-wooblue text-white1 hover:bg-wooblue hover:text-white1 dark:bg-wooblue dark:text-white1"
                   >
                     <ForwardedIconComponent
                       name="Plus"
