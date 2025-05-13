@@ -42,7 +42,10 @@ const ButtonSendWrapper = ({
     return BUTTON_STATES.DEFAULT;
   };
 
-  const buttonClasses = classNames("form-modal-send-button", getButtonState());
+  const buttonClasses = classNames(
+    getButtonState(),
+    "form-modal-send-button bg-wooblue text-white1 hover:bg-wooblue hover:text-white1 dark:bg-wooblue dark:text-white1",
+  );
 
   const handleClick = () => {
     if (showStopButton && isBuilding) {

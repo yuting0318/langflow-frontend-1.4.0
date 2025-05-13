@@ -307,8 +307,7 @@ export default function IOModal({
                   <div className="flex items-center gap-2">
                     <div
                       className={cn(
-                        `flex rounded p-1`,
-                        swatchColors[swatchIndex],
+                        `flex rounded p-1 bg-wooblue text-white`,
                       )}
                     >
                       <IconComponent

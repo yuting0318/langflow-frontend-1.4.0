@@ -18,6 +18,7 @@ import ChatInput from "../chatInput/chat-input";
 import useDragAndDrop from "../chatInput/hooks/use-drag-and-drop";
 import { useFileHandler } from "../chatInput/hooks/use-file-handler";
 import ChatMessage from "../chatMessage/chat-message";
+import Chat from "@/assets/chat.png";
 
 const MemoizedChatMessage = memo(ChatMessage, (prevProps, nextProps) => {
   return (
@@ -204,9 +205,10 @@ export default function ChatView({
             <>
               <div className="flex h-full w-full flex-col items-center justify-center">
                 <div className="flex flex-col items-center justify-center gap-4 p-8">
-                  <LangflowLogo
-                    title="Langflow logo"
-                    className="h-10 w-10 scale-[1.5]"
+                  <img
+                      src={Chat}
+                      alt="Langflow logo"
+                      className="h-10 w-10 scale-[1.5]"
                   />
                   <div className="flex flex-col items-center justify-center">
                     <h3 className="mt-2 pb-2 text-2xl font-semibold text-primary">

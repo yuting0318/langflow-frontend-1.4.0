@@ -76,11 +76,12 @@ const FlowToolbar = memo(function FlowToolbar(
         <div className="flex gap-2">
           <div
               className={cn(
-                  "hover:shadow-round-btn-shadow flex h-11 items-center justify-center gap-3 rounded-md border bg-background px-1.5 shadow transition-all"
+                  "hover:shadow-round-btn-shadow flex h-11 items-center justify-center rounded-md border bg-background  shadow transition-all"
               )}
           >
             <FlowToolbarOptions />
             <div className="h-6 bg-border border-1.5" />
+            <div className="flex items-center gap-1.5 px-1.5">
             <button
                 onClick={handleClickRun}
                 className="whitespace-nowrap relative inline-flex w-full items-center justify-center gap-1 px-3 py-1.5 text-sm font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-hover"
@@ -88,6 +89,7 @@ const FlowToolbar = memo(function FlowToolbar(
               <IconComponent name="Play" className="h-5 w-5" />
               Run All
             </button>
+            </div>
         </div>
         </div>
       </Panel>
