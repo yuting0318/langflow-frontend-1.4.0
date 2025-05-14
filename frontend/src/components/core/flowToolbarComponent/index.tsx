@@ -16,6 +16,7 @@ import {useBuildStatus} from "@/CustomNodes/GenericNode/hooks/use-get-build-stat
 import {APIClassType} from "@/types/api";
 import { NodeDataType } from "@/types/flow";
 import {findLastNode} from "@/utils/reactflowUtils";
+import FlowDeployModal from "@/modals/flowDeployModal";
 
 function IconComponent(props: { name: string; className: string }) {
   return null;
@@ -30,6 +31,7 @@ const FlowToolbar = memo(function FlowToolbar(
 ): JSX.Element {
   const preventDefault = true;
   const [open, setOpen] = useState<boolean>(false);
+  const [openSettings, setOpenSettings] = useState(false);
   const [openCodeModal, setOpenCodeModal] = useState<boolean>(false);
   const [openShareModal, setOpenShareModal] = useState<boolean>(false);
   function handleAPIWShortcut(e: KeyboardEvent) {
@@ -90,9 +92,20 @@ const FlowToolbar = memo(function FlowToolbar(
               Run All
             </button>
             </div>
+            <div className="h-6 bg-border border-1.5" />
+            <div className="flex items-center gap-1.5 px-1.5">
+              <button
+                  onClick={() => setOpenSettings(true)}
+                  className="whitespace-nowrap relative inline-flex w-full items-center justify-center gap-1 px-3 py-1.5 text-sm font-semibold text-foreground transition-all duration-150 ease-in-out hover:bg-hover"
+              >
+                <IconComponent name="CloudUpload" className="h-5 w-5"/>
+                Deploy
+              </button>
+            </div>
         </div>
         </div>
       </Panel>
+      <FlowDeployModal open={openSettings} setOpen={setOpenSettings} />
     </>
   );
 });
