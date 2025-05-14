@@ -26,9 +26,12 @@ export type AlertDropdownType = {
   onClose?: () => void;
 };
 export type AlertItemType = {
-  type: "notice" | "error" | "success";
+  type: "notice" | "error" | "success" | "progress";
   title: string;
   link?: string;
   list?: Array<string>;
   id: string;
+  returnUrl?: string;
+  progress?: number;
+  flowid?: string;
 };

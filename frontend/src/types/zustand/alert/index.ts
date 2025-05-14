@@ -6,7 +6,9 @@ export type AlertStoreType = {
   noticeData: { title: string; link?: string };
   setNoticeData: (newState: { title: string; link?: string }) => void;
   successData: { title: string };
-  setSuccessData: (newState: { title: string }) => void;
+  setSuccessData: (newState: { title: string ;  returnUrl?: string }) => void;
+  progressData: { progress: number };
+  setProgressData: (newState: { title: string; progress: number,returnUrl:string }, id?: string) => void;
   notificationCenter: boolean;
   setNotificationCenter: (newState: boolean) => void;
   notificationList: Array<AlertItemType>;

@@ -29,6 +29,7 @@ export default function AppHeader(): JSX.Element {
   const dark = useDarkStore((state) => state.dark);
   const setDark = useDarkStore((state) => state.setDark);
   const notificationCenter = useAlertStore((state) => state.notificationCenter);
+  const notificationList = useAlertStore((state) => state.notificationList);
   const navigate = useCustomNavigate();
   const [activeState, setActiveState] = useState<"notifications" | null>(null);
   const lastPath = window.location.pathname.split("/").filter(Boolean).pop();

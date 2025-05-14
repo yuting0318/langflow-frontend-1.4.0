@@ -14,15 +14,9 @@ import SingleAlert from "./components/singleAlertComponent";
 const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
   function AlertDropdown({ children, notificationRef, onClose }, ref) {
     const notificationList = useAlertStore((state) => state.notificationList);
-    const clearNotificationList = useAlertStore(
-      (state) => state.clearNotificationList,
-    );
-    const removeFromNotificationList = useAlertStore(
-      (state) => state.removeFromNotificationList,
-    );
-    const setNotificationCenter = useAlertStore(
-      (state) => state.setNotificationCenter,
-    );
+      const clearNotificationList = useAlertStore((state) => state.clearNotificationList);
+      const removeFromNotificationList = useAlertStore((state) => state.removeFromNotificationList);
+      const setNotificationCenter = useAlertStore((state) => state.setNotificationCenter);
 
     const [open, setOpen] = useState(false);
 
@@ -31,6 +25,20 @@ const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
         onClose?.();
       }
     }, [open]);
+
+    const [notifRead, setNotifRead] = useState<Set<string>>(new Set());
+
+    useEffect(() => {
+      const notifications = notificationList.filter(
+        (notif) => notif.type === "progress",
+      );
+      if (notifications.some((notif) => !notifRead.has(notif.id))) {
+        setOpen(true);
+        notifications.forEach((notif) => {
+          setNotifRead((prev) => new Set(prev.add(notif.id)));
+        });
+      }
+    }, [notificationList]);
 
     return (
       <Popover
@@ -53,7 +61,7 @@ const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
             Notifications
             <div className="flex gap-3 pr-3">
               <button
-                className="text-muted-foreground hover:text-status-red"
+                className="text-foreground hover:text-status-red"
                 onClick={() => {
                   setOpen(false);
                   setTimeout(clearNotificationList, 100);
