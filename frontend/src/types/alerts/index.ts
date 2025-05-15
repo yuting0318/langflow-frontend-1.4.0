@@ -33,5 +33,8 @@ export type AlertItemType = {
   id: string;
   returnUrl?: string;
   progress?: number;
+  starttime ?: Date;
   flowid?: string;
+  revision:string;
+  name?: string;
 };

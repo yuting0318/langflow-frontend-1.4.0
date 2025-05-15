@@ -8,7 +8,7 @@ export type AlertStoreType = {
   successData: { title: string };
   setSuccessData: (newState: { title: string ;  returnUrl?: string }) => void;
   progressData: { progress: number };
-  setProgressData: (newState: { title: string; progress: number,returnUrl:string }, id?: string) => void;
+  setProgressData: (newState: { title: string; starttime: Date,returnUrl:string ,flowid:string,revision:string,name:string}, id?: string) => void;
   notificationCenter: boolean;
   setNotificationCenter: (newState: boolean) => void;
   notificationList: Array<AlertItemType>;

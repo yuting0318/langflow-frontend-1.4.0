@@ -10,17 +10,17 @@ import ShadTooltip from "../../../../components/common/shadTooltipComponent";
 import useAlertStore from "@/stores/alertStore";
 import {cloneDeep} from "lodash";
 import useFlowStore from "@/stores/flowStore";
-
+import axios from "axios";
 
 export default function SingleAlert({
                                       dropItem,
                                       removeAlert,
                                     }: SingleAlertComponentType): JSX.Element {
   const calculateProgress = () => {
-    if (!dropItem.starttime) return 0; // 若尚未設定開始時間，返回 0%
-    const elapsedTime = Date.now() - dropItem.starttime; // 計算經過的時間
-    const duration = 60000; // 一分鐘（60,000 毫秒）
-    return Math.min((elapsedTime / duration) * 100, 100); // 確保不超過 100%
+    if (!dropItem.starttime) return 0;
+    const elapsedTime = Date.now() - dropItem.starttime;
+    const duration = 90000;
+    return Math.min((elapsedTime / duration) * 99, 99);
   };
   const [show, setShow] = useState(true);
   const [progress, setProgress] = useState(calculateProgress()|| 0);
@@ -34,15 +34,27 @@ export default function SingleAlert({
     if (type === "progress") {
       const interval = setInterval(() => {
         setProgress((prevProgress) => {
-          console.log("prevProgress", prevProgress);
-          if (prevProgress >= 100) {
-            setShow(false);
-            setTimeout(() => {
-              removeAlert(dropItem.id);
-            }, 500);
-            clearInterval(interval);
-            setSuccessData({ title: "Deployed successfully.", returnUrl: dropItem.returnUrl });
-            return 100;
+          if (prevProgress >= 99) {
+            const healthUrl = `${dropItem.returnUrl}/health`;
+            const checkRevision = () => {
+              axios.get(healthUrl)
+                  .then((response) => {
+                    if (response.status === 200) {
+                      const fetchedRevision = response.data.revision;
+                      if (fetchedRevision !== dropItem.revision) {
+                        setShow(false);
+                        removeAlert(dropItem.id);
+                        clearInterval(interval);
+                        setSuccessData({ title: `${dropItem.name} Deployed Successfully.`, returnUrl: dropItem.returnUrl });
+                      }
+                    }
+                  })
+                  .catch((err) => {
+                    console.log("Health check failed", err);
+                  });
+            };
+            checkRevision();
+            return 99;
           }
           return calculateProgress();
         });

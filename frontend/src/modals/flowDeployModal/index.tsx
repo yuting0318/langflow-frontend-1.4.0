@@ -15,7 +15,7 @@ import BaseModal from "../baseModal";
 import Loading from "@/components/ui/loading";
 import ShadTooltip from "../../components/common/shadTooltipComponent";
 
-export default function FlowSettingsModal({ open, setOpen }: FlowSettingsPropsType): JSX.Element {
+export default function FlowDeployModal({ open, setOpen }: FlowSettingsPropsType): JSX.Element {
     const saveFlow = useSaveFlow();
     const currentFlow = useFlowStore((state) => state.currentFlow);
     const setCurrentFlow = useFlowStore((state) => state.setCurrentFlow);
