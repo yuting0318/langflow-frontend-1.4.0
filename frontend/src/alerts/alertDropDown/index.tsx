@@ -1,5 +1,5 @@
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { forwardRef, useEffect, useState } from "react";
+import {forwardRef, useEffect, useRef, useState} from "react";
 import IconComponent from "../../components/common/genericIconComponent";
 import {
   Popover,
@@ -17,6 +17,7 @@ const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
       const clearNotificationList = useAlertStore((state) => state.clearNotificationList);
       const removeFromNotificationList = useAlertStore((state) => state.removeFromNotificationList);
       const setNotificationCenter = useAlertStore((state) => state.setNotificationCenter);
+      const triggerRef = useRef<HTMLButtonElement | null>(null);
 
     const [open, setOpen] = useState(false);
 
@@ -33,7 +34,7 @@ const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
         (notif) => notif.type === "progress",
       );
       if (notifications.some((notif) => !notifRead.has(notif.id))) {
-        setOpen(true);
+        if (!open) triggerRef.current?.click();
         notifications.forEach((notif) => {
           setNotifRead((prev) => new Set(prev.add(notif.id)));
         });
@@ -51,7 +52,7 @@ const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
           }
         }}
       >
-        <PopoverTrigger asChild>{children}</PopoverTrigger>
+        <PopoverTrigger ref={triggerRef} asChild>{children}</PopoverTrigger>
         <PopoverContent
           ref={notificationRef}
           data-testid="notification-dropdown-content"
