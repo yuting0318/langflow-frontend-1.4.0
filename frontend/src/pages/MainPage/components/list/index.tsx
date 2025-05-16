@@ -149,19 +149,19 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                   Edited {timeElapsed(flowData.updated_at)} ago
                 </div>
               </div>
-              <div className="ml-1 pb-5 flex items-center justify-end gap-2">
+              <div className="ml-3 flex items-center justify-end gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
                       size="iconMd"
                       data-testid="home-dropdown-menu"
-                      className="group"
+                      className="group hover:bg-gray-200 dark:hover:bg-background"
                     >
                       <ForwardedIconComponent
                         name="Ellipsis"
                         aria-hidden="true"
-                        className="h-5 w-5 text-muted-foreground group-hover:text-foreground"
+                        className="h-5 w-5 text-muted-foreground group-hover:text-foreground "
                       />
                     </Button>
                   </DropdownMenuTrigger>
@@ -184,8 +184,8 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                 </DropdownMenu>
               </div>
             </div>
-            <div className="overflow-hidden text-sm text-primary">
-              <span className="block max-w-[110ch] truncate">
+            <div className="text-xs text-primary mt-1 mx-1">
+              <span className="max-w-[110ch]  line-clamp-2">
                 {flowData.description}
               </span>
             </div>
