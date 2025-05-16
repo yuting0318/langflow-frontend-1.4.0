@@ -44,7 +44,7 @@ const ButtonSendWrapper = ({
 
   const buttonClasses = classNames(
     getButtonState(),
-    "form-modal-send-button bg-wooblue text-white1 hover:bg-wooblue hover:text-white1 dark:bg-wooblue dark:text-white1",
+    "form-modal-send-button bg-wooblue text-white hover:bg-wooblue hover:text-white dark:bg-wooblue dark:text-white",
   );
 
   const handleClick = () => {

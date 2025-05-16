@@ -85,7 +85,7 @@ export default function PublishDropdown() {
         <DropdownMenuTrigger asChild>
           <Button
             variant="default"
-            className="!h-8 !w-[95px] font-medium"
+            className="!h-8 !w-[95px] font-medium bg-wooblue dark:text-white hover:bg-wooblue/90"
             data-testid="publish-button"
           >
             Publish

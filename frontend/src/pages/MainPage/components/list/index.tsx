@@ -115,10 +115,10 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         onClick={handleClick}
         className={`my-1.5 flex flex-row bg-background h-24 ${
             isComponent ? "cursor-default" : "cursor-pointer"
-        } group justify-between rounded-lg bg-clip-padding border  p-1.5  hover:shadow-sm hover:bg-blue-100/50 hover:scale-105 hover:border-blue-100/50 hover:dark:bg-wooblue/20 dark:text-white1 ${
+        } group justify-between rounded-lg bg-clip-padding border  p-1.5  hover:shadow-sm hover:bg-blue-100/50 hover:scale-105 hover:border-blue-100/50 hover:dark:bg-wooblue/20 dark:text-white ${
             isSelectedCard ? "border border-blue-100/50 ring-2 ring-blue-100/50" : ""
         } ${
-            isRedBorder ? "border border-blue-100/50 ring-blue-100/50 bg-blue-100/50 dark:bg-wooblue/20 dark:border-wooblue/20  dark:text-white1 " : ""
+            isRedBorder ? "border border-blue-100/50 ring-blue-100/50 bg-blue-100/50 dark:bg-wooblue/20 dark:border-wooblue/20  dark:text-white " : ""
         }`}
       >
         <ShadTooltip content={flowData.name} side="top">
@@ -130,7 +130,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
             <div className="line-clamp-1 flex min-w-0 flex-row items-center gap-3 truncate">
               <div
                   className={cn(
-                      `item-center flex justify-center rounded-lg p-2 shrink-0 bg-wooblue text-white1 dark:bg-wooblue dark:text-white1`,
+                      `item-center flex justify-center rounded-lg p-2 shrink-0 bg-wooblue text-white dark:bg-wooblue dark:text-white`,
                   )}
               >
                 <ForwardedIconComponent
