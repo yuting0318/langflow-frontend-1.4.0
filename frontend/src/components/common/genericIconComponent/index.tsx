@@ -5,6 +5,7 @@ import { cn } from "../../../utils/utils";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCallback, useEffect, useState } from "react";
+import emojiRegex from "emoji-regex";
 
 export const ForwardedIconComponent = memo(
   forwardRef(
@@ -25,6 +26,7 @@ export const ForwardedIconComponent = memo(
       const [iconError, setIconError] = useState(false);
       const [initialName, setInitialName] = useState(name);
       const [TargetIcon, setTargetIcon] = useState<any>(null);
+      const regex = emojiRegex();
 
       useEffect(() => {
         // Reset states when icon name changes
@@ -56,6 +58,18 @@ export const ForwardedIconComponent = memo(
           return () => clearTimeout(timer);
         }
       }, [name]);
+
+        if (regex.test(name)) {
+          // Handle emoji as icon
+          return (
+            <span
+              className={cn(className, "text-emoji")}
+              style={{ fontSize: strokeWidth ?? "1em" }}
+            >
+              {name}
+            </span>
+          );
+        }
 
       const style = {
         strokeWidth: strokeWidth ?? 1.5,
