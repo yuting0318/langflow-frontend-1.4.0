@@ -115,7 +115,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
         onClick={handleClick}
         className={`my-1.5 flex flex-row bg-background h-24 ${
             isComponent ? "cursor-default" : "cursor-pointer"
-        } group justify-between rounded-lg bg-clip-padding border  p-1.5  hover:shadow-sm hover:bg-blue-100/50 hover:scale-105 hover:border-blue-100/50 hover:dark:bg-wooblue/20 dark:text-white ${
+        } group justify-between rounded-lg bg-clip-padding border  p-2.5  hover:shadow-sm hover:bg-blue-100/50 hover:scale-105 hover:border-blue-100/50 hover:dark:bg-wooblue/20 dark:text-white ${
             isSelectedCard ? "border border-blue-100/50 ring-2 ring-blue-100/50" : ""
         } ${
             isRedBorder ? "border border-blue-100/50 ring-blue-100/50 bg-blue-100/50 dark:bg-wooblue/20 dark:border-wooblue/20  dark:text-white " : ""
@@ -141,7 +141,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                 />
               </div>
               <div className="flex w-7/12 flex-col">
-                <div className="text-md overflow-hidden truncate text-ellipsis whitespace-nowrap pr-2 font-semibold">
+                <div className="text-sm overflow-hidden truncate text-ellipsis whitespace-nowrap pr-2 font-semibold">
                   {flowData.name}
                 </div>
 
