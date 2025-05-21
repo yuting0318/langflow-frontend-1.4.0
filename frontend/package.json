@@ -117,7 +117,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:7860",
+  "proxy": "https://imgenie-rag-backend-v3-412195401920.asia-east1.run.app",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@swc/cli": "^0.5.2",
