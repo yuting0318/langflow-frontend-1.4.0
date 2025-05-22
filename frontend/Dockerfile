@@ -1,16 +1,24 @@
-FROM node:20-alpine as frontend_build
-ARG BACKEND_URL
-WORKDIR /app
+FROM --platform=$BUILDPLATFORM node:lts-bookworm-slim as builder-base
 
-COPY ./package.json ./package-lock.json ./tsconfig.json ./vite.config.ts ./index.html ./tailwind.config.js ./postcss.config.js ./prettier.config.js /app/
-RUN npm install
-COPY ./src /app/src
+WORKDIR /frontend
+COPY package*.json .
+#RUN rm -rf package-lock.json
+RUN npm ci
+
+COPY . .
+
+# Increase Node memory limit to 4096 MB
+ENV NODE_OPTIONS=--max_old_space_size=4096
+
 RUN npm run build
 
-FROM nginx
-COPY --from=frontend_build /app/build/ /usr/share/nginx/html
-COPY /nginx.conf /etc/nginx/conf.d/default.conf
-COPY start-nginx.sh /start-nginx.sh
+
+FROM nginxinc/nginx-unprivileged:stable-bookworm-perl as runtime
+
+ENV BACKEND_URL=https://imgenie-rag-backend-v3-412195401920.asia-east1.run.app
+
+COPY --from=builder-base --chown=nginx /frontend/build /usr/share/nginx/html
+COPY --chown=nginx ./docker/frontend/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chown=nginx ./docker/frontend/start-nginx.sh /start-nginx.sh
 RUN chmod +x /start-nginx.sh
-ENV BACKEND_URL=$BACKEND_URL
-CMD ["/start-nginx.sh"]
+ENTRYPOINT ["/start-nginx.sh"]
