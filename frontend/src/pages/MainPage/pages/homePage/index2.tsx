@@ -104,7 +104,7 @@ const HomePage2 = ({ type }: { type: "flows" | "components" | "mcp" }) => {
         className="flex h-full w-full flex-col overflow-y-auto"
         data-testid="cards-wrapper"
       >
-        <div className="flex h-full w-80 flex-col xl:container">
+        <div className="flex h-full w-full flex-col xl:container">
           <HeaderComponent2
               folderName={folderName}
               flowType={flowType}

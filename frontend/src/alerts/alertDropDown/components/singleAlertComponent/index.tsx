@@ -184,7 +184,7 @@ export default function SingleAlert({
         <Loading data-testid="loading_icon" className="ml-0.5" size={16} />
       </div>
       <div className="ml-3 flex-1">
-        <p className="text-sm font-medium text-progress-foreground dark:text-white1">
+        <p className="text-sm font-medium text-progress-foreground dark:text-white">
           {dropItem.title}
         </p>
         <div className="flex items-center justify-between">
@@ -194,7 +194,7 @@ export default function SingleAlert({
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          <p className="text-sm font-medium text-progress-foreground ml-2 dark:text-white1">
+          <p className="text-sm font-medium text-progress-foreground ml-2 dark:text-white">
             {progress.toFixed(0)}%
           </p>
         </div>
@@ -233,7 +233,7 @@ export default function SingleAlert({
                 >
                   <IconComponent
                     name="Copy"
-                    className="side-bar-button-size h-5 w-5 text-black hover:text-blue-600 dark:text-white1"
+                    className="side-bar-button-size h-5 w-5 text-black hover:text-blue-600 dark:text-white"
                     aria-hidden="true"
                   />
                 </button>
