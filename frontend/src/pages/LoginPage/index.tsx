@@ -30,7 +30,7 @@ export default function LoginPage(): JSX.Element {
     setInputState((prev) => ({ ...prev, [name]: value }));
   }
 
-  const { mutate } = useLoginUser();
+  const { mutate } = useLoginUser({ retry: 0 });
 
   function signIn() {
     const user: LoginType = {
