@@ -1,8 +1,3 @@
-import { TweaksComponent } from "@/components/core/codeTabsComponent/components/tweaksComponent";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { CustomAPIGenerator } from "@/customization/components/custom-api-generator";
-import useAuthStore from "@/stores/authStore";
 import useFlowStore from "@/stores/flowStore";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-python";
@@ -25,10 +20,7 @@ export default function McpModal({
     open?: boolean;
     setOpen?: (a: boolean | ((o?: boolean) => boolean)) => void;
 }) {
-    const autoLogin = useAuthStore((state) => state.autoLogin);
     const nodes = useFlowStore((state) => state.nodes);
-    const [openTweaks, setOpenTweaks] = useState(false);
-    const tweaks = useTweaksStore((state) => state.tweaks);
     const [open, setOpen] =
         mySetOpen !== undefined && myOpen !== undefined
             ? [myOpen, mySetOpen]
@@ -57,9 +49,7 @@ export default function McpModal({
             >
                 <BaseModal.Trigger asChild>{children}</BaseModal.Trigger>
                 <BaseModal.Content >
-                    <div >
                     <McpServerTab folderName={folderName} />
-                    </div>
                 </BaseModal.Content>
             </BaseModal>
 
