@@ -12,6 +12,7 @@ import { usePatchUpdateFlow } from "@/controllers/API/queries/flows/use-patch-up
 import { CustomLink } from "@/customization/components/custom-link";
 import { ENABLE_PUBLISH, ENABLE_WIDGET } from "@/customization/feature-flags";
 import ApiModal from "@/modals/apiModal/new-api-modal";
+import McpModal from "@/pages/MainPage/pages/homePage/components/McpModal";
 import EmbedModal from "@/modals/EmbedModal/embed-modal";
 import useAlertStore from "@/stores/alertStore";
 import useAuthStore from "@/stores/authStore";
@@ -38,6 +39,7 @@ export default function PublishDropdown() {
   const hasIO = useFlowStore((state) => state.hasIO);
   const isAuth = useAuthStore((state) => !!state.autoLogin);
   const [openApiModal, setOpenApiModal] = useState(false);
+  const [openMcpModal, setOpenMcpModal] = useState(false);
 
   const handlePublishedSwitch = async (checked: boolean) => {
     mutateAsync(
@@ -117,31 +119,25 @@ export default function PublishDropdown() {
               <span>API access</span>
             </div>
           </DropdownMenuItem>
-          <CustomLink
-            className={cn("flex-1")}
-            to={`/mcp/folder/${folderId}`}
-            target="_blank"
-          >
-            <DropdownMenuItem
+          <DropdownMenuItem
               className="deploy-dropdown-item group"
-              onClick={() => {}}
-            >
-              <div
+              onClick={() => setOpenMcpModal(true)}
+          >
+            <div
                 className="group-hover:bg-accent"
-                data-testid="mcp-server-item"
-              >
-                <IconComponent
+                data-testid="api-access-item"
+            >
+              <IconComponent
                   name="Mcp"
-                  className={`${groupStyle} icon-size mr-2 fill-muted-foreground group-hover:fill-foreground`}
-                />
-                <span>MCP Server</span>
-                <IconComponent
-                  name="ExternalLink"
-                  className={`${groupStyle} icon-size ml-auto hidden group-hover:block`}
-                />
-              </div>
-            </DropdownMenuItem>
-          </CustomLink>
+                  className={`${groupStyle} icon-size mr-2`}
+              />
+              <span>MCP Server</span>
+              <IconComponent
+                      name="ExternalLink"
+                      className={`${groupStyle} icon-size ml-auto hidden group-hover:block`}
+                    />
+            </div>
+          </DropdownMenuItem>
           {ENABLE_WIDGET && (
             <DropdownMenuItem
               onClick={() => setOpenEmbedModal(true)}
@@ -221,6 +217,9 @@ export default function PublishDropdown() {
       <ApiModal open={openApiModal} setOpen={setOpenApiModal}>
         <></>
       </ApiModal>
+      <McpModal open={openMcpModal} setOpen={setOpenMcpModal}>
+        <></>
+      </McpModal>
       <EmbedModal
         open={openEmbedModal}
         setOpen={setOpenEmbedModal}

@@ -118,7 +118,7 @@ const McpServerTab = ({ folderName }: { folderName: string }) => {
   return (
     <div>
       <div
-        className="text-md -mt-2 pb-2 font-bold"
+        className="text-md pb-2 font-bold"
         data-testid="mcp-server-title"
       >
         MCP Server
