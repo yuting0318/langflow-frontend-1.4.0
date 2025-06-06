@@ -7,6 +7,12 @@ RUN npm ci
 
 COPY . .
 
+COPY ./set_proxy.sh .
+RUN chmod +x set_proxy.sh && \
+    cat set_proxy.sh | tr -d '\r' > set_proxy_unix.sh && \
+    chmod +x set_proxy_unix.sh && \
+    ./set_proxy_unix.sh
+
 # Increase Node memory limit to 4096 MB
 ENV NODE_OPTIONS=--max_old_space_size=4096
 

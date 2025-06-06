@@ -1,10 +1,5 @@
 #! /bin/bash
 # Edit package.json to set proxy
-backend_url=$BACKEND_URL
-echo "Setting proxy to $backend_url"
+echo "Setting proxy to __BACKEND_URL__"
 # Load package.json file and edit proxy
-packagejson=$(cat package.json)
-
-packagejson=$(echo "$packagejson" | jq ".proxy = \"$backend_url\"")
-
-echo "$packagejson" > package.json
+sed -E 's#"proxy"\s*:\s*".*"#"proxy": "__BACKEND_URL__"#' package.json
