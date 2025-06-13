@@ -22,12 +22,14 @@ import { AgGridReact } from "ag-grid-react";
 import { useMemo, useRef, useState } from "react";
 import { sortByDate } from "../../utils/sort-flows";
 import DragWrapComponent from "./components/dragWrapComponent";
+import { useNavigate } from "react-router-dom";
 
 export const FilesPage = () => {
   const tableRef = useRef<AgGridReact<any>>(null);
   const { data: files } = useGetFilesV2();
   const setErrorData = useAlertStore((state) => state.setErrorData);
   const setSuccessData = useAlertStore((state) => state.setSuccessData);
+  const navigate = useNavigate();
 
   const { mutate: rename } = usePostRenameFileV2();
 
@@ -153,9 +155,12 @@ export const FilesPage = () => {
       headerName: "Modified",
       field: "updated_at",
       valueFormatter: (params) => {
-        return params.data.progress
-          ? ""
-          : new Date(params.value + "Z").toLocaleString();
+        if (params.data.progress) {
+          return "";
+        }
+        const date = new Date(params.value + "Z");
+        date.setHours(date.getHours() - 8);
+        return date.toLocaleString();
       },
       editable: false,
       flex: 1,
@@ -232,18 +237,16 @@ export const FilesPage = () => {
               className="flex items-center pb-8 text-xl font-semibold"
               data-testid="mainpage_title"
             >
-              <div className="h-7 w-10 transition-all group-data-[open=true]/sidebar-wrapper:md:w-0 lg:hidden">
-                <div className="relative left-0 opacity-100 transition-all group-data-[open=true]/sidebar-wrapper:md:opacity-0">
-                  <SidebarTrigger>
-                    <ForwardedIconComponent
-                      name="PanelLeftOpen"
-                      aria-hidden="true"
-                      className=""
-                    />
-                  </SidebarTrigger>
-                </div>
-              </div>
-              My Files
+              <Button
+                  unstyled
+                  onClick={() => navigate("/")}
+              >
+                <ForwardedIconComponent
+                    name="ChevronLeft"
+                    className="flex cursor-pointer mr-3"
+                />
+              </Button>
+             <p className="text-2xl font-bold tracking-tight">My Files</p>
             </div>
             {files && files.length !== 0 ? (
               <div className="flex justify-between">

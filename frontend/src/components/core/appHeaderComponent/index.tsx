@@ -1,8 +1,7 @@
 import AlertDropdown from "@/alerts/alertDropDown";
 // @ts-ignore
-import DataStaxLogo from "@/assets/DataStaxLogo.svg?react";
-// @ts-ignore
-import Logo from "@/assets/Logo.svg?react";
+import DataStaxLogo from "@/assets/DataStaxLogo.svg?react"
+import Logo from "@/assets/logo.svg?react";
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
@@ -134,7 +133,6 @@ export default function AppHeader(): JSX.Element {
                       name="Bell"
                       className="side-bar-button-size h-[18px] w-[18px]"
                   />
-                  <span className="hidden whitespace-nowrap text-[14px] 2xl:inline">Notifications</span>
                 </div>
                 </ShadTooltip>
               </Button>
@@ -155,7 +153,6 @@ export default function AppHeader(): JSX.Element {
                           name="SunIcon"
                           className="side-bar-button-size"
                       />
-                      <span className="hidden whitespace-nowrap 2xl:inline">Dark Mode</span>
                     </>
 
                 ) : (
@@ -164,7 +161,6 @@ export default function AppHeader(): JSX.Element {
                           name="MoonIcon"
                           className="side-bar-button-size"
                       />
-                      <span className="hidden whitespace-nowrap 2xl:inline">Dark Mode</span>
                     </>
                 )}
 
@@ -183,10 +179,21 @@ export default function AppHeader(): JSX.Element {
                     name="Settings"
                     className="side-bar-button-size h-[18px] w-[18px]"
                 />
-                <span className="hidden whitespace-nowrap 2xl:inline">Settings</span>
               </Button>
             </ShadTooltip>
         )}
+            <ShadTooltip content="Files" side="bottom" styleClasses="z-999">
+              <Button
+                  variant="ghost"
+                  className="flex text-sm font-medium"
+                  onClick={() => navigate("/files")}
+              >
+                <ForwardedIconComponent
+                    name="File"
+                    className="side-bar-button-size h-[18px] w-[18px]"
+                />
+                </Button>
+            </ShadTooltip>
         <ShadTooltip content="Logout" side="bottom" styleClasses="z-999">
           <Button
               data-testid="user-profile-settings"
@@ -198,12 +205,8 @@ export default function AppHeader(): JSX.Element {
                 name="LogOut"
                 className="side-bar-button-size h-[18px] w-[18px]"
             />
-            <span className="hidden whitespace-nowrap 2xl:inline">
-              Logout
-            </span>
           </Button>
         </ShadTooltip>
-
       </div>
     </div>
   );

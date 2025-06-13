@@ -126,6 +126,7 @@ const router = createBrowserRouter(
                     </StoreGuard>
                   }
                 />
+                  <Route path="files" element={<FilesPage />} />
                 <Route
                   path="store/:id/"
                   element={
