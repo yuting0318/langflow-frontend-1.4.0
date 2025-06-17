@@ -515,6 +515,7 @@ export const MenuBar = memo((): JSX.Element => {
                 ? new Date(updatedAt).toLocaleString("en-US", {
                     hour: "numeric",
                     minute: "numeric",
+                    timeZone: "UTC",
                   })
                 : "Never")
             ) : (

@@ -6,7 +6,7 @@ export const timeElapsed = (dateTimeString: string | undefined): string => {
   const givenDate = new Date(dateTimeString);
   const now = new Date();
 
-  let diffInMs = Math.abs(now.getTime() - givenDate.getTime());
+  let diffInMs = Math.abs(now.getTime() + 8 * 60 * 60 * 1000 - givenDate.getTime());
 
   const minutes = Math.floor(diffInMs / (1000 * 60));
   const hours = Math.floor(minutes / 60);
