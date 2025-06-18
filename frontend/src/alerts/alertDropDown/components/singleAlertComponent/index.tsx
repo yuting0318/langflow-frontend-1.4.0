@@ -34,7 +34,7 @@ export default function SingleAlert({
     if (type === "progress") {
       const interval = setInterval(() => {
         setProgress((prevProgress) => {
-          if (prevProgress >= 99) {
+          if (dropItem && prevProgress >= 99) {
             const healthUrl = `${dropItem.returnUrl}/health`;
             const checkRevision = () => {
               axios.get(healthUrl)
