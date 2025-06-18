@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const useTheme = () => {
   const [systemTheme, setSystemTheme] = useState(false);
   const { setDark, dark } = useDarkStore((state) => ({
-    setDark: state.setDark,
+    setDark: () => {},
     dark: state.dark,
   }));
 
