@@ -9,7 +9,6 @@ import {
   usePatchFlowsMCP,
 } from "@/controllers/API/queries/mcp";
 import { PROXY_TARGET } from "@/customization/config-constants";
-import useTheme from "@/customization/hooks/use-custom-theme";
 import useAuthStore from "@/stores/authStore";
 import { useFolderStore } from "@/stores/foldersStore";
 import { MCPSettingsType } from "@/types/mcp";
@@ -20,7 +19,6 @@ import { useParams } from "react-router-dom";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
 const McpServerTab = ({ folderName }: { folderName: string }) => {
-  const isDarkMode = useTheme().dark;
   const { folderId } = useParams();
   const myCollectionId = useFolderStore((state) => state.myCollectionId);
   const projectId = folderId ?? myCollectionId ?? "";
@@ -55,10 +53,10 @@ const McpServerTab = ({ folderName }: { folderName: string }) => {
 
   const syntaxHighlighterStyle = {
     "hljs-string": {
-      color: isDarkMode ? "hsla(158, 64%, 52%, 1)" : "#059669", // Accent Green
+      color: "#059669", // Accent Green
     },
     "hljs-attr": {
-      color: isDarkMode ? "hsla(329, 86%, 70%, 1)" : "#DB2777", // Accent Pink
+      color: "#DB2777", // Accent Pink
     },
   };
 
