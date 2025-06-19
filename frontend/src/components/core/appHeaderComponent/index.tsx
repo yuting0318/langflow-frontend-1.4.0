@@ -59,7 +59,7 @@ export default function AppHeader(): JSX.Element {
   const getNotificationBadge = () => {
     const baseClasses = "absolute h-1 w-1 rounded-full bg-destructive";
     return notificationCenter
-      ? `${baseClasses} right-[5.1rem] top-[5px]`
+      ? `${baseClasses} top-[5px]`
       : "hidden";
   };
 
@@ -115,6 +115,7 @@ export default function AppHeader(): JSX.Element {
               <Button
                 ref={notificationRef}
                 unstyled
+                className="relative"
                 onClick={() =>
                   setActiveState((prev) =>
                     prev === "notifications" ? null : "notifications",
