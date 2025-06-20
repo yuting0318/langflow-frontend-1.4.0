@@ -35,7 +35,7 @@ export default function FlowLogsModal({
 
       if (data?.rows?.length > 0) {
         data.rows.map((row: any) => {
-          row.timestamp = convertUTCToLocalTimezone(row.timestamp);
+          row.timestamp = (row.timestamp);
         });
       }
 
